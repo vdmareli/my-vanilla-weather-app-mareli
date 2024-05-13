@@ -2,6 +2,7 @@ function refreshWeather(response) {
   let temperatureElement = document.querySelector("#temp");
   let temperature = response.data.temperature.current;
   let cityElement = document.querySelector("#city");
+  let countryElement = document.querySelector("#country");
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
   let windSpeedElement = document.querySelector("#wind-speed");
@@ -10,6 +11,7 @@ function refreshWeather(response) {
   let iconElement = document.querySelector("#icon");
 
   cityElement.innerHTML = response.data.city;
+  countryElement.innerHTML = response.data.country;
   temperatureElement.innerHTML = Math.round(temperature);
   descriptionElement.innerHTML = response.data.condition.description;
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
@@ -73,7 +75,7 @@ function displayForecast(response) {
   let forecastHtml = "";
 
   response.data.daily.forEach(function (day, index) {
-    if (index < 5) {
+    if (index > 0 && index < 6) {
       forecastHtml =
         forecastHtml +
         `
